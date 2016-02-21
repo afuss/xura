@@ -1,0 +1,31 @@
+######
+# Get the Docker file from Git
+# Get the WAR file from Repository
+#
+#
+- hosts: localhost
+  tasks:
+    - name: Install Git
+      become: yes
+      become_method: sudo
+      yum: name=git state=latest
+
+    - name: Install Docker
+      become: yes
+      become_method: sudo
+      yum: name=docker state=latest
+
+    - name: Clone Pet-Clinic
+      git: repo=https://github.com/afuss/spring-petclinic dest=~/petclinic update=no
+
+    - name: Clone Xura
+      git: repo=https://github.com/afuss/xura.git dest=~/xura update=no
+
+
+
+    - name: Creates directory
+      file: path=/workspace/Docker-Src  state=directory
+
+    - name: Get the Docker file from Git Repository
+      get_url: url=https://github.com/afuss/xura/blob/master/Dockerfile dest=/workspace/Docker-Src  mode=0755 force=yes
+        
