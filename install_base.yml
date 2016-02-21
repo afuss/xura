@@ -1,3 +1,4 @@
+
 - hosts: localhost
   tasks:
     - name: Install Git
@@ -5,7 +6,7 @@
       become_method: sudo
       yum: name=git state=latest
 
-	  
+          
     - name: Install Docker
       become: yes
       become_method: sudo
@@ -37,3 +38,4 @@
       service: name=jenkins state=running enabled=true
       become: yes
       become_method: sudo
+
