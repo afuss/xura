@@ -12,10 +12,10 @@
       yum: name=docker state=latest
 
     - name: Clone Pet-Clinic
-      git: repo=https://github.com/shimib/spring-petclinic dest=~/petclinic update=no
+      git: repo=https://github.com/afuss/spring-petclinic dest=~/petclinic update=no
 
     - name: Clone Xura
-      git: repo=https://github.com/shimib/xura.git dest=~/xura update=no
+      git: repo=https://github.com/afuss/xura.git dest=~/xura update=no
 
     - name: Ensure Jenkins Yum repo present
       become: yes
