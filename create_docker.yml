@@ -1,0 +1,30 @@
+- hosts: localhost
+
+  vars:
+     artifactory_host: 172.31.0.42 
+  tasks:
+    - name: Config Maven Artifactory 
+      become: yes
+      become_method: sudo
+      template: src=~ec2-user/xura/template-setting.xml  dest=~ec2-user/xura/setting.xml 
+
+    - name: insyall docker-py
+      pip: name=docker-py
+      become: yes
+      become_method: sudo
+
+    - name: Build a Docker Imgage
+      docker_image: path="/home/ec2-user/Build" name="tomcat" state=build
+      become: yes
+      become_method: sudo
+
+    - name: Run docker on the destination machine
+      docker: 
+        name: tomcat 
+        image: tomcat
+        state: started
+        expose: 
+        - 8080
+        ports:
+        - "9090:8080"
+ 
