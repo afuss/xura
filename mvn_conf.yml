@@ -6,5 +6,5 @@
     - name: Config Maven Artifactory 
       become: yes
       become_method: sudo
-      template: src=./template-setting.xml  dest=./setting.xml 
+      template: src=~/xura/template-setting.xml  dest=~/xura/setting.xml 
 
